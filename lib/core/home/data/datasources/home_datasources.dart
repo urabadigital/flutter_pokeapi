@@ -1,12 +1,17 @@
+import 'package:evolvers/core/common/utils/extension/extension.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pragma/core/common/utils/extension/http.dart';
+import 'package:evolvers/core/common/utils/extension/http.dart';
 
+import '../../../common/params/pokemon_info_params.dart';
+import '../../../common/params/pokemon_params.dart';
 import '../../../common/services/services.dart';
 import '../end_points.dart';
-import '../models/cat.dart';
+import '../models/models.dart';
 
 abstract class IHomeDatasource {
-  Future<List<CatModel>> getCatList();
+  Future<List<PokemonModel>> getPokemonList(PokemonParam params);
+  Future<PokemonInfoParam> getImagePokemon(String name);
+  Future<PokemonModel> getPokemonDetail(String name);
 }
 
 @Injectable(as: IHomeDatasource)
@@ -18,53 +23,69 @@ class HomeDatasource implements IHomeDatasource {
   final BaseClient baseClient;
 
   @override
-  Future<List<CatModel>> getCatList() async {
+  Future<List<PokemonModel>> getPokemonList(param) async {
+    Map<String, dynamic> params = {
+      'limit': param.limit,
+      'offset': (param.offset - 1) * 20,
+    };
     try {
-      return (await baseClient.get(
-        path: EndPoint.breedsApi,
+      List<PokemonModel> pokemons = (await baseClient.get(
+        path: EndPoint.pokemon + params.queryParams,
       ))!
-          .withListConverter(
-        callback: CatModel.fromJson,
+          .withListConverterFromKey<PokemonModel>(
+        'results',
+        callback: PokemonModel.fromJson,
+      );
+      final List<PokemonModel> pokemonList = [];
+
+      for (var element in pokemons) {
+        final info = await getImagePokemon(element.name ?? '');
+        final edit = element.copyWith(
+          id: info.id,
+          baseExperience: info.baseExperience,
+        );
+        pokemonList.add(edit);
+      }
+
+      return pokemonList;
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<PokemonInfoParam> getImagePokemon(String name) async {
+    try {
+      PokemonModel response = (await baseClient.get(
+        path: EndPoint.pokemonDetail.toParamUrl(<String, String>{
+          'name': name,
+        })!,
+      ))!
+          .withConverter<PokemonModel>(
+        callback: PokemonModel.fromJson,
+      );
+      return PokemonInfoParam(
+        id: response.id ?? 0,
+        baseExperience: response.baseExperience,
       );
     } on Exception catch (_) {
       rethrow;
     }
   }
 
-  // @override
-  // Future<DetailModel> getMovieDetail(String id) async {
-  //   try {
-  //     Map<String, dynamic> response = (await baseClient.get(
-  //             path: EndPoint.detailMovieApi.toParamUrl(<String, String>{
-  //       'id': id,
-  //     })!))!
-  //         .withConverter<Map<String, dynamic>>(
-  //       callback: (Map<String, dynamic> json) => json,
-  //     );
-  //     response.addAll({
-  //       'youtube_id': await getYoutubeId(id),
-  //     });
-
-  //     return DetailModel.fromJson(response);
-  //   } on Exception catch (_) {
-  //     rethrow;
-  //   }
-  // }
-
-  // Future<String?> getYoutubeId(String id) async {
-  //   try {
-  //     Map<String, dynamic> response = (await baseClient.get(
-  //       path: EndPoint.detailMovieApiVideos.toParamUrl(<String, String>{
-  //         'id': id,
-  //       })!,
-  //     ))!
-  //         .withConverter<Map<String, dynamic>>(
-  //       callback: (Map<String, dynamic> json) => json,
-  //     );
-
-  //     return response['results'][0]['key'] as String?;
-  //   } on Exception catch (_) {
-  //     rethrow;
-  //   }
-  // }
+  @override
+  Future<PokemonModel> getPokemonDetail(String name) async {
+    try {
+      return (await baseClient.get(
+        path: EndPoint.pokemonDetail.toParamUrl(<String, String>{
+          'name': name,
+        })!,
+      ))!
+          .withConverter<PokemonModel>(
+        callback: PokemonModel.fromJson,
+      );
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
 }

@@ -4,6 +4,8 @@ part of 'home_bloc.dart';
 class HomeState with _$HomeState {
   const factory HomeState({
     Failure? failure,
-    @Default([]) List<CatEntity> cat,
+    @Default(false) bool isLoading,
+    @Default(false) bool isLoadingImage,
+    @Default([]) List<PokemonEntity> pokemons,
   }) = _Initial;
 }

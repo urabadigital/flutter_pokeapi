@@ -21,7 +21,7 @@ class ScaffoldWithNavigation extends StatelessWidget {
     final GlobalKey<ScaffoldState> scaffoldDrawerKey =
         GlobalKey<ScaffoldState>();
     return switch (breakpoint.name) {
-      MOBILE => _ScaffoldWithNavigationBar(navigationShell),
+      MOBILE => _ScaffoldWithNavigationBar(navigationShell, scaffoldDrawerKey),
       TABLET => _ScaffoldWithDrawer(navigationShell, scaffoldDrawerKey),
       (_) => _ScaffoldWithNavigationRail(navigationShell, scaffoldDrawerKey),
     };
@@ -241,15 +241,46 @@ class _NavigationDrawer extends StatelessWidget {
 }
 
 class _ScaffoldWithNavigationBar extends StatelessWidget {
-  const _ScaffoldWithNavigationBar(this.navigationShell);
+  const _ScaffoldWithNavigationBar(
+      this.navigationShell, this.scaffoldDrawerKey);
 
   final StatefulNavigationShell navigationShell;
+  final GlobalKey<ScaffoldState>? scaffoldDrawerKey;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      appBar: const NavigationAppBar(),
+      appBar: NavigationAppBar(scaffoldDrawerKey: scaffoldDrawerKey),
+      key: scaffoldDrawerKey,
       body: navigationShell,
+      drawer: Drawer(
+        child: Column(
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(border: Border()),
+              margin: EdgeInsets.zero,
+              child: Center(
+                child: Text(
+                  MyApp.title,
+                  style: theme.textTheme.bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+            Expanded(
+              child: _NavigationRail(
+                navigationShell: navigationShell,
+                expand: true,
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: ThemeModeButton.outlined(),
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: (index) {

@@ -1,3 +1,4 @@
+part of 'extension.dart';
 
 extension MapExtension on Map<String, dynamic> {
   Map<String, dynamic> get filterOutNulls {
@@ -22,15 +23,15 @@ extension MapExtension on Map<String, dynamic> {
 
   String? getString(String key) => this[key]?.toString();
 
-  // DateTime? getDateTime(String key) => getString(key)?.toDateTime;
+  DateTime? getDateTime(String key) => getString(key)?.toDateTime;
 
-  // num? getNum(String key) => getString(key)?.toNumeric;
+  num? getNum(String key) => getString(key)?.toNumeric;
 
-  // double? getDouble(String key) => getString(key)?.toDouble;
+  double? getDouble(String key) => getString(key)?.toDouble;
 
-  // int? getInt(String key) => getString(key)?.toInt;
+  int? getInt(String key) => getString(key)?.toInt;
 
-  // bool? getBool(String key) => getString(key)?.toBool;
+  bool? getBool(String key) => getString(key)?.toBool;
 
   List<dynamic>? getList(String key) =>
       (this[key] ?? <dynamic>[]) as List<dynamic>;

@@ -3,14 +3,14 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pragma/ui/navigation/cubit/router_manager.dart';
-import 'package:pragma/core/common/theme/theme.dart';
+import 'package:evolvers/ui/navigation/cubit/router_manager.dart';
+import 'package:evolvers/core/common/theme/theme.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const title = 'Pragma';
+  static const title = 'PokeDesk';
 
   @override
   Widget build(BuildContext context) {

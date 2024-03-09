@@ -6,7 +6,8 @@ class BaseClient {
 
   final Env env;
   static Map<String, String> headers = <String, String>{
-    'x-api-key': getIt<Env>().apiKey,
+    if (getIt<Env>().apiKey?.isNotEmpty ?? false)
+      'x-api-key': getIt<Env>().apiKey ?? '',
     // 'Accept': 'application/json',
     'Content-type': 'application/json',
   };

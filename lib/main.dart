@@ -11,7 +11,7 @@ import 'package:url_strategy/url_strategy.dart';
 import 'core/common/services/analytic.dart';
 import 'core/common/services/bloc_observer.dart';
 import 'injectable_dependency.dart';
-import 'multi_bloc.dart';
+import 'provider.dart';
 
 void main() async {
   await runZonedGuarded(
@@ -33,7 +33,7 @@ void main() async {
 
       setPathUrlStrategy();
       configureDependencies();
-      runApp(const MultiBloc());
+      runApp(const ProviderBloc());
     },
     kIsWeb
         ? (Object error, StackTrace stackTrace) =>
