@@ -1,6 +1,6 @@
 // Microsoft Visual C++ generated resource script.
 //
-#evolvers code_page(65001)
+#pragma code_page(65001)
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.prueba.app" "\0"
-            VALUE "FileDescription", "evolvers" "\0"
+            VALUE "FileDescription", "pragma" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "evolvers" "\0"
+            VALUE "InternalName", "pragma" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.prueba.app. All rights reserved." "\0"
-            VALUE "OriginalFilename", "evolvers.exe" "\0"
-            VALUE "ProductName", "evolvers" "\0"
+            VALUE "OriginalFilename", "pragma.exe" "\0"
+            VALUE "ProductName", "pragma" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
