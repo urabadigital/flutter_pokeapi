@@ -24,7 +24,7 @@ GoRouter router = GoRouter(
       name: LoginView.name,
       pageBuilder: (context, state) => NoTransitionPage(
         key: state.pageKey,
-        child: const LoginView(),
+        child: LoginView.create(),
       ),
     ),
     GoRoute(

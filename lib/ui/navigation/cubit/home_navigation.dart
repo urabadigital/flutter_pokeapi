@@ -11,6 +11,14 @@ class HomeNavigation extends Cubit<void> {
     navigation.pop();
   }
 
+  void push(String route, {Object? extra}) {
+    navigation.push(route, extra: extra);
+  }
+
+  void go(String route, {Object? extra}) {
+    navigation.go(route, extra: extra);
+  }
+
   void navigateCatDetails(String route, {required String? name}) {
     Map<String, dynamic> params = {
       'name': name,

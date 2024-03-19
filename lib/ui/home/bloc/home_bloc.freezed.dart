@@ -19,6 +19,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String? search) search,
     required TResult Function() getPokemonList,
     required TResult Function() getImagePokemon,
     required TResult Function() refreshPokemons,
@@ -27,6 +28,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String? search)? search,
     TResult? Function()? getPokemonList,
     TResult? Function()? getImagePokemon,
     TResult? Function()? refreshPokemons,
@@ -35,6 +37,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String? search)? search,
     TResult Function()? getPokemonList,
     TResult Function()? getImagePokemon,
     TResult Function()? refreshPokemons,
@@ -44,6 +47,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_GetPokemonList value) getPokemonList,
     required TResult Function(_GetImagePokemon value) getImagePokemon,
     required TResult Function(_RefreshPokemons value) refreshPokemons,
@@ -52,6 +56,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Search value)? search,
     TResult? Function(_GetPokemonList value)? getPokemonList,
     TResult? Function(_GetImagePokemon value)? getImagePokemon,
     TResult? Function(_RefreshPokemons value)? refreshPokemons,
@@ -60,6 +65,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_GetPokemonList value)? getPokemonList,
     TResult Function(_GetImagePokemon value)? getImagePokemon,
     TResult Function(_RefreshPokemons value)? refreshPokemons,
@@ -124,6 +130,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String? search) search,
     required TResult Function() getPokemonList,
     required TResult Function() getImagePokemon,
     required TResult Function() refreshPokemons,
@@ -135,6 +142,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String? search)? search,
     TResult? Function()? getPokemonList,
     TResult? Function()? getImagePokemon,
     TResult? Function()? refreshPokemons,
@@ -146,6 +154,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String? search)? search,
     TResult Function()? getPokemonList,
     TResult Function()? getImagePokemon,
     TResult Function()? refreshPokemons,
@@ -161,6 +170,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_GetPokemonList value) getPokemonList,
     required TResult Function(_GetImagePokemon value) getImagePokemon,
     required TResult Function(_RefreshPokemons value) refreshPokemons,
@@ -172,6 +182,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Search value)? search,
     TResult? Function(_GetPokemonList value)? getPokemonList,
     TResult? Function(_GetImagePokemon value)? getImagePokemon,
     TResult? Function(_RefreshPokemons value)? refreshPokemons,
@@ -183,6 +194,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_GetPokemonList value)? getPokemonList,
     TResult Function(_GetImagePokemon value)? getImagePokemon,
     TResult Function(_RefreshPokemons value)? refreshPokemons,
@@ -197,6 +209,157 @@ class _$StartedImpl implements _Started {
 
 abstract class _Started implements HomeEvent {
   const factory _Started() = _$StartedImpl;
+}
+
+/// @nodoc
+abstract class _$$SearchImplCopyWith<$Res> {
+  factory _$$SearchImplCopyWith(
+          _$SearchImpl value, $Res Function(_$SearchImpl) then) =
+      __$$SearchImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? search});
+}
+
+/// @nodoc
+class __$$SearchImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$SearchImpl>
+    implements _$$SearchImplCopyWith<$Res> {
+  __$$SearchImplCopyWithImpl(
+      _$SearchImpl _value, $Res Function(_$SearchImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? search = freezed,
+  }) {
+    return _then(_$SearchImpl(
+      search: freezed == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchImpl implements _Search {
+  const _$SearchImpl({this.search});
+
+  @override
+  final String? search;
+
+  @override
+  String toString() {
+    return 'HomeEvent.search(search: $search)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchImpl &&
+            (identical(other.search, search) || other.search == search));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, search);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+      __$$SearchImplCopyWithImpl<_$SearchImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String? search) search,
+    required TResult Function() getPokemonList,
+    required TResult Function() getImagePokemon,
+    required TResult Function() refreshPokemons,
+  }) {
+    return search(this.search);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String? search)? search,
+    TResult? Function()? getPokemonList,
+    TResult? Function()? getImagePokemon,
+    TResult? Function()? refreshPokemons,
+  }) {
+    return search?.call(this.search);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String? search)? search,
+    TResult Function()? getPokemonList,
+    TResult Function()? getImagePokemon,
+    TResult Function()? refreshPokemons,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this.search);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
+    required TResult Function(_GetPokemonList value) getPokemonList,
+    required TResult Function(_GetImagePokemon value) getImagePokemon,
+    required TResult Function(_RefreshPokemons value) refreshPokemons,
+  }) {
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_GetPokemonList value)? getPokemonList,
+    TResult? Function(_GetImagePokemon value)? getImagePokemon,
+    TResult? Function(_RefreshPokemons value)? refreshPokemons,
+  }) {
+    return search?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
+    TResult Function(_GetPokemonList value)? getPokemonList,
+    TResult Function(_GetImagePokemon value)? getImagePokemon,
+    TResult Function(_RefreshPokemons value)? refreshPokemons,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Search implements HomeEvent {
+  const factory _Search({final String? search}) = _$SearchImpl;
+
+  String? get search;
+  @JsonKey(ignore: true)
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -238,6 +401,7 @@ class _$GetPokemonListImpl implements _GetPokemonList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String? search) search,
     required TResult Function() getPokemonList,
     required TResult Function() getImagePokemon,
     required TResult Function() refreshPokemons,
@@ -249,6 +413,7 @@ class _$GetPokemonListImpl implements _GetPokemonList {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String? search)? search,
     TResult? Function()? getPokemonList,
     TResult? Function()? getImagePokemon,
     TResult? Function()? refreshPokemons,
@@ -260,6 +425,7 @@ class _$GetPokemonListImpl implements _GetPokemonList {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String? search)? search,
     TResult Function()? getPokemonList,
     TResult Function()? getImagePokemon,
     TResult Function()? refreshPokemons,
@@ -275,6 +441,7 @@ class _$GetPokemonListImpl implements _GetPokemonList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_GetPokemonList value) getPokemonList,
     required TResult Function(_GetImagePokemon value) getImagePokemon,
     required TResult Function(_RefreshPokemons value) refreshPokemons,
@@ -286,6 +453,7 @@ class _$GetPokemonListImpl implements _GetPokemonList {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Search value)? search,
     TResult? Function(_GetPokemonList value)? getPokemonList,
     TResult? Function(_GetImagePokemon value)? getImagePokemon,
     TResult? Function(_RefreshPokemons value)? refreshPokemons,
@@ -297,6 +465,7 @@ class _$GetPokemonListImpl implements _GetPokemonList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_GetPokemonList value)? getPokemonList,
     TResult Function(_GetImagePokemon value)? getImagePokemon,
     TResult Function(_RefreshPokemons value)? refreshPokemons,
@@ -352,6 +521,7 @@ class _$GetImagePokemonImpl implements _GetImagePokemon {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String? search) search,
     required TResult Function() getPokemonList,
     required TResult Function() getImagePokemon,
     required TResult Function() refreshPokemons,
@@ -363,6 +533,7 @@ class _$GetImagePokemonImpl implements _GetImagePokemon {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String? search)? search,
     TResult? Function()? getPokemonList,
     TResult? Function()? getImagePokemon,
     TResult? Function()? refreshPokemons,
@@ -374,6 +545,7 @@ class _$GetImagePokemonImpl implements _GetImagePokemon {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String? search)? search,
     TResult Function()? getPokemonList,
     TResult Function()? getImagePokemon,
     TResult Function()? refreshPokemons,
@@ -389,6 +561,7 @@ class _$GetImagePokemonImpl implements _GetImagePokemon {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_GetPokemonList value) getPokemonList,
     required TResult Function(_GetImagePokemon value) getImagePokemon,
     required TResult Function(_RefreshPokemons value) refreshPokemons,
@@ -400,6 +573,7 @@ class _$GetImagePokemonImpl implements _GetImagePokemon {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Search value)? search,
     TResult? Function(_GetPokemonList value)? getPokemonList,
     TResult? Function(_GetImagePokemon value)? getImagePokemon,
     TResult? Function(_RefreshPokemons value)? refreshPokemons,
@@ -411,6 +585,7 @@ class _$GetImagePokemonImpl implements _GetImagePokemon {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_GetPokemonList value)? getPokemonList,
     TResult Function(_GetImagePokemon value)? getImagePokemon,
     TResult Function(_RefreshPokemons value)? refreshPokemons,
@@ -466,6 +641,7 @@ class _$RefreshPokemonsImpl implements _RefreshPokemons {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String? search) search,
     required TResult Function() getPokemonList,
     required TResult Function() getImagePokemon,
     required TResult Function() refreshPokemons,
@@ -477,6 +653,7 @@ class _$RefreshPokemonsImpl implements _RefreshPokemons {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String? search)? search,
     TResult? Function()? getPokemonList,
     TResult? Function()? getImagePokemon,
     TResult? Function()? refreshPokemons,
@@ -488,6 +665,7 @@ class _$RefreshPokemonsImpl implements _RefreshPokemons {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String? search)? search,
     TResult Function()? getPokemonList,
     TResult Function()? getImagePokemon,
     TResult Function()? refreshPokemons,
@@ -503,6 +681,7 @@ class _$RefreshPokemonsImpl implements _RefreshPokemons {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_GetPokemonList value) getPokemonList,
     required TResult Function(_GetImagePokemon value) getImagePokemon,
     required TResult Function(_RefreshPokemons value) refreshPokemons,
@@ -514,6 +693,7 @@ class _$RefreshPokemonsImpl implements _RefreshPokemons {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Search value)? search,
     TResult? Function(_GetPokemonList value)? getPokemonList,
     TResult? Function(_GetImagePokemon value)? getImagePokemon,
     TResult? Function(_RefreshPokemons value)? refreshPokemons,
@@ -525,6 +705,7 @@ class _$RefreshPokemonsImpl implements _RefreshPokemons {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_GetPokemonList value)? getPokemonList,
     TResult Function(_GetImagePokemon value)? getImagePokemon,
     TResult Function(_RefreshPokemons value)? refreshPokemons,
@@ -547,6 +728,7 @@ mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isLoadingImage => throw _privateConstructorUsedError;
   List<PokemonEntity> get pokemons => throw _privateConstructorUsedError;
+  List<PokemonEntity> get oldPoke => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -562,7 +744,8 @@ abstract class $HomeStateCopyWith<$Res> {
       {Failure? failure,
       bool isLoading,
       bool isLoadingImage,
-      List<PokemonEntity> pokemons});
+      List<PokemonEntity> pokemons,
+      List<PokemonEntity> oldPoke});
 }
 
 /// @nodoc
@@ -582,6 +765,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? isLoading = null,
     Object? isLoadingImage = null,
     Object? pokemons = null,
+    Object? oldPoke = null,
   }) {
     return _then(_value.copyWith(
       failure: freezed == failure
@@ -600,6 +784,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
               as List<PokemonEntity>,
+      oldPoke: null == oldPoke
+          ? _value.oldPoke
+          : oldPoke // ignore: cast_nullable_to_non_nullable
+              as List<PokemonEntity>,
     ) as $Val);
   }
 }
@@ -616,7 +804,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       {Failure? failure,
       bool isLoading,
       bool isLoadingImage,
-      List<PokemonEntity> pokemons});
+      List<PokemonEntity> pokemons,
+      List<PokemonEntity> oldPoke});
 }
 
 /// @nodoc
@@ -634,6 +823,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isLoadingImage = null,
     Object? pokemons = null,
+    Object? oldPoke = null,
   }) {
     return _then(_$InitialImpl(
       failure: freezed == failure
@@ -652,6 +842,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
               as List<PokemonEntity>,
+      oldPoke: null == oldPoke
+          ? _value._oldPoke
+          : oldPoke // ignore: cast_nullable_to_non_nullable
+              as List<PokemonEntity>,
     ));
   }
 }
@@ -663,8 +857,10 @@ class _$InitialImpl implements _Initial {
       {this.failure,
       this.isLoading = false,
       this.isLoadingImage = false,
-      final List<PokemonEntity> pokemons = const []})
-      : _pokemons = pokemons;
+      final List<PokemonEntity> pokemons = const [],
+      final List<PokemonEntity> oldPoke = const []})
+      : _pokemons = pokemons,
+        _oldPoke = oldPoke;
 
   @override
   final Failure? failure;
@@ -683,9 +879,18 @@ class _$InitialImpl implements _Initial {
     return EqualUnmodifiableListView(_pokemons);
   }
 
+  final List<PokemonEntity> _oldPoke;
+  @override
+  @JsonKey()
+  List<PokemonEntity> get oldPoke {
+    if (_oldPoke is EqualUnmodifiableListView) return _oldPoke;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_oldPoke);
+  }
+
   @override
   String toString() {
-    return 'HomeState(failure: $failure, isLoading: $isLoading, isLoadingImage: $isLoadingImage, pokemons: $pokemons)';
+    return 'HomeState(failure: $failure, isLoading: $isLoading, isLoadingImage: $isLoadingImage, pokemons: $pokemons, oldPoke: $oldPoke)';
   }
 
   @override
@@ -698,12 +903,18 @@ class _$InitialImpl implements _Initial {
                 other.isLoading == isLoading) &&
             (identical(other.isLoadingImage, isLoadingImage) ||
                 other.isLoadingImage == isLoadingImage) &&
-            const DeepCollectionEquality().equals(other._pokemons, _pokemons));
+            const DeepCollectionEquality().equals(other._pokemons, _pokemons) &&
+            const DeepCollectionEquality().equals(other._oldPoke, _oldPoke));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure, isLoading,
-      isLoadingImage, const DeepCollectionEquality().hash(_pokemons));
+  int get hashCode => Object.hash(
+      runtimeType,
+      failure,
+      isLoading,
+      isLoadingImage,
+      const DeepCollectionEquality().hash(_pokemons),
+      const DeepCollectionEquality().hash(_oldPoke));
 
   @JsonKey(ignore: true)
   @override
@@ -717,7 +928,8 @@ abstract class _Initial implements HomeState {
       {final Failure? failure,
       final bool isLoading,
       final bool isLoadingImage,
-      final List<PokemonEntity> pokemons}) = _$InitialImpl;
+      final List<PokemonEntity> pokemons,
+      final List<PokemonEntity> oldPoke}) = _$InitialImpl;
 
   @override
   Failure? get failure;
@@ -727,6 +939,8 @@ abstract class _Initial implements HomeState {
   bool get isLoadingImage;
   @override
   List<PokemonEntity> get pokemons;
+  @override
+  List<PokemonEntity> get oldPoke;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

@@ -7,5 +7,6 @@ class HomeState with _$HomeState {
     @Default(false) bool isLoading,
     @Default(false) bool isLoadingImage,
     @Default([]) List<PokemonEntity> pokemons,
+    @Default([]) List<PokemonEntity> oldPoke,
   }) = _Initial;
 }

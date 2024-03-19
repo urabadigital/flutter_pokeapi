@@ -1,7 +1,9 @@
+import 'package:evolvers/ui/navigation/cubit/router_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/common/utils/theme_mode_button.dart';
+import '../../login/login.dart';
 import 'navigation_title.dart';
 
 class NavigationAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -24,9 +26,36 @@ class NavigationAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       elevation: 4,
-      actions: const [
-        ThemeModeButton.icon(),
-        Gap(8),
+      actions: [
+        const ThemeModeButton.icon(),
+        PopupMenuButton<int>(
+          icon: const Icon(Icons.account_circle_outlined),
+          tooltip: 'profile',
+          offset: const Offset(0, 50),
+          onSelected: (value) {
+            if (value == 0) {
+              context.read<RouterManager>().go(LoginView.path);
+            }
+          },
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              value: 0,
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.logout,
+                    size: 18,
+                  ),
+                  SizedBox(width: 5),
+                  Text('Log Out'),
+                ],
+              ),
+              onTap: () {
+                // Sign out logic
+              },
+            ),
+          ],
+        ),
       ],
     );
   }

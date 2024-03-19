@@ -22,6 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_GetPokemonList>(_getPokemonList);
     on<_GetImagePokemon>(_getImagePokemon);
     on<_RefreshPokemons>(_refreshPokemons);
+    on<_Search>(_search);
   }
 
   late ScrollController scrollController;
@@ -61,8 +62,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       case Right(value: List<PokemonEntity> pokemons):
         List<PokemonEntity> pokemonList = state.pokemons.toList();
         pokemonList.addAll(pokemons);
-        emit(state.copyWith(pokemons: pokemonList, isLoading: false));
-        // add(const _GetImagePokemon());
+        emit(state.copyWith(
+          pokemons: pokemonList,
+          isLoading: false,
+          oldPoke: pokemonList,
+        ));
+      // add(const _GetImagePokemon());
     }
   }
 
@@ -88,14 +93,39 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             );
             pokemons.add(edit);
 
-            emit(state.copyWith(pokemons: pokemons, isLoadingImage: false));
+            emit(state.copyWith(
+              pokemons: pokemons,
+              isLoadingImage: false,
+              oldPoke: pokemons,
+            ));
           },
         );
       } else {
         final empty = element.copyWith(id: 0, baseExperience: 0);
         pokemons.add(empty);
-        emit(state.copyWith(pokemons: pokemons, isLoadingImage: false));
+        emit(state.copyWith(
+          pokemons: pokemons,
+          isLoadingImage: false,
+          oldPoke: pokemons,
+        ));
       }
+    }
+  }
+
+  Future<void> _search(_Search event, Emitter<HomeState> emit) async {
+    emit(state.copyWith(isLoading: true));
+
+    if (event.search == '') {
+      emit(state.copyWith(
+        pokemons: state.oldPoke,
+        isLoading: false,
+      ));
+    } else {
+      final filter = state.pokemons
+          .where((element) =>
+              element.name!.toLowerCase().contains(event.search!.toLowerCase()))
+          .toList();
+      emit(state.copyWith(pokemons: filter, isLoading: false));
     }
   }
 }

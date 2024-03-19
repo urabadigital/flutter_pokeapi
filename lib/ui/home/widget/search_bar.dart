@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/home_bloc.dart';
 
 class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({super.key});
@@ -53,9 +56,9 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                         FocusManager.instance.primaryFocus?.unfocus();
                       },
                       onChanged: (text) {
-                        // context.read<HomeBloc>().add(
-                        //       HomeEvent.search(search: text),
-                        //     );
+                        context.read<HomeBloc>().add(
+                              HomeEvent.search(search: text),
+                            );
                       },
                     ),
                   ),

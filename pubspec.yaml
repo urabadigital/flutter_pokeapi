@@ -75,6 +75,8 @@ dependencies:
   url_strategy: ^0.2.0
   firebase_crashlytics: ^3.4.9
   injectable: ^2.3.2
+  sqflite: ^2.3.2
+  floor: ^1.4.2
 
 dev_dependencies:
   flutter_test:
@@ -87,6 +89,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.10
+  floor_generator: ^1.4.2
   build_runner: ^2.4.8
   json_serializable: ^6.7.1
   freezed: ^2.4.7
