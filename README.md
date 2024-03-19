@@ -13,6 +13,10 @@ A new Flutter project.
 - http
 - [PokeApi](https://pokeapi.co/)
 
+## Clean Architecture Diagram
+
+![Image](screenshots/diagram.png)
+
 ## Screenshots
 
 <br>
