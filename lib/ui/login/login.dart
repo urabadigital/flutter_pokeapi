@@ -1,3 +1,4 @@
+import 'package:evolvers/core/common/database/database_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:evolvers/ui/home/view/home_view.dart';
@@ -13,7 +14,9 @@ class LoginView extends StatefulWidget {
 
   static Widget create() => BlocProvider(
         lazy: false,
-        create: (context) => AuthCubit()..initDatabase(),
+        create: (context) => AuthCubit(
+          db: context.read<DatabaseManager>(),
+        ),
         child: const LoginView(),
       );
 
@@ -40,15 +43,15 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO: Boton para creacion de usuarios
-      // floatingActionButton: ElevatedButton(
-      //   onPressed: () async {
-      //     _authCubit.createUser(
-      //       _usernameController.text,
-      //       _passwordController.text,
-      //     );
-      //   },
-      //   child: const Text('Create User'),
-      // ),
+      floatingActionButton: ElevatedButton(
+        onPressed: () async {
+          _authCubit.createUser(
+            _usernameController.text,
+            _passwordController.text,
+          );
+        },
+        child: const Text('Create User'),
+      ),
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.success) {
@@ -58,7 +61,7 @@ class _LoginViewState extends State<LoginView> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.message),
-                backgroundColor: Colors.red,
+                backgroundColor: Colors.white,
               ),
             );
             _authCubit.invalidate();

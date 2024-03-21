@@ -20,7 +20,6 @@ mixin _$AuthState {
   bool get success => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  DatabaseHelper? get db => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -32,12 +31,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool success,
-      bool error,
-      String message,
-      DatabaseHelper? db});
+  $Res call({bool isLoading, bool success, bool error, String message});
 }
 
 /// @nodoc
@@ -57,7 +51,6 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? success = null,
     Object? error = null,
     Object? message = null,
-    Object? db = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -76,10 +69,6 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      db: freezed == db
-          ? _value.db
-          : db // ignore: cast_nullable_to_non_nullable
-              as DatabaseHelper?,
     ) as $Val);
   }
 }
@@ -92,12 +81,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool success,
-      bool error,
-      String message,
-      DatabaseHelper? db});
+  $Res call({bool isLoading, bool success, bool error, String message});
 }
 
 /// @nodoc
@@ -115,7 +99,6 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? success = null,
     Object? error = null,
     Object? message = null,
-    Object? db = freezed,
   }) {
     return _then(_$InitialImpl(
       isLoading: null == isLoading
@@ -134,10 +117,6 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      db: freezed == db
-          ? _value.db
-          : db // ignore: cast_nullable_to_non_nullable
-              as DatabaseHelper?,
     ));
   }
 }
@@ -149,8 +128,7 @@ class _$InitialImpl implements _Initial {
       {this.isLoading = false,
       this.success = false,
       this.error = false,
-      this.message = '',
-      this.db});
+      this.message = ''});
 
   @override
   @JsonKey()
@@ -164,12 +142,10 @@ class _$InitialImpl implements _Initial {
   @override
   @JsonKey()
   final String message;
-  @override
-  final DatabaseHelper? db;
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, success: $success, error: $error, message: $message, db: $db)';
+    return 'AuthState(isLoading: $isLoading, success: $success, error: $error, message: $message)';
   }
 
   @override
@@ -181,13 +157,12 @@ class _$InitialImpl implements _Initial {
                 other.isLoading == isLoading) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.error, error) || other.error == error) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.db, db) || other.db == db));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, isLoading, success, error, message, db);
+      Object.hash(runtimeType, isLoading, success, error, message);
 
   @JsonKey(ignore: true)
   @override
@@ -201,8 +176,7 @@ abstract class _Initial implements AuthState {
       {final bool isLoading,
       final bool success,
       final bool error,
-      final String message,
-      final DatabaseHelper? db}) = _$InitialImpl;
+      final String message}) = _$InitialImpl;
 
   @override
   bool get isLoading;
@@ -212,8 +186,6 @@ abstract class _Initial implements AuthState {
   bool get error;
   @override
   String get message;
-  @override
-  DatabaseHelper? get db;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

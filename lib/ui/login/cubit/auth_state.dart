@@ -7,6 +7,5 @@ class AuthState with _$AuthState {
     @Default(false) bool success,
     @Default(false) bool error,
     @Default('') String message,
-    DatabaseHelper? db,
   }) = _Initial;
 }
